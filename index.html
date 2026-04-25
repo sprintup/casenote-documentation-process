@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Case Note Documentation Process Short Course</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar" aria-label="Course progress">
+        <div class="sidebar-header">
+          <p class="eyebrow">Short Course</p>
+          <h1>Case Note Documentation Process</h1>
+        </div>
+
+        <div class="progress-card">
+          <div class="progress-topline">
+            <span id="progressLabel">0 of 16 complete</span>
+            <span id="progressPercent">0%</span>
+          </div>
+          <div class="progress-track" aria-hidden="true">
+            <div id="progressBar" class="progress-bar"></div>
+          </div>
+          <div class="time-summary" aria-label="Estimated course time">
+            <div>
+              <span>Completed</span>
+              <strong id="timeCompleted">0 min</strong>
+            </div>
+            <div>
+              <span>Remaining</span>
+              <strong id="timeRemaining">115 min</strong>
+            </div>
+            <div>
+              <span>Total</span>
+              <strong id="timeTotal">115 min</strong>
+            </div>
+          </div>
+        </div>
+
+        <nav id="progressList" class="progress-list" aria-label="Learning objective checklist"></nav>
+      </aside>
+
+      <main class="course">
+        <section class="api-panel" aria-labelledby="apiKeyTitle">
+          <div>
+            <p class="eyebrow">Connect</p>
+            <h2 id="apiKeyTitle">OpenAI API key</h2>
+          </div>
+          <label class="api-key-field">
+            <span>API key</span>
+            <input id="apiKey" type="password" autocomplete="off" placeholder="sk-..." aria-describedby="apiNote">
+          </label>
+          <p id="apiNote">Used only in this browser tab. Avoid using shared or production keys on public pages.</p>
+        </section>
+
+        <section class="course-intro" aria-labelledby="courseTitle">
+          <p class="eyebrow">One-page course</p>
+          <h2 id="courseTitle">Build a dependable case note documentation process</h2>
+          <p>
+            Move from first capture in a system of engagement to final documentation in a system of record,
+            with enough structure to keep notes findable, timely, and audit-ready.
+          </p>
+          <p>
+            Complete each learning objective in a module to complete that module. To complete a learning
+            objective, mark it as complete. The Do steps are recommended steps for completing the learning
+            objective, not a separate submission.
+          </p>
+        </section>
+
+        <section id="modules" class="modules" aria-label="Course modules"></section>
+      </main>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
