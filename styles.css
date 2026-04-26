@@ -571,10 +571,14 @@ button {
   background: var(--accent-soft);
 }
 
-.connect-context {
+.check-question {
   margin-bottom: 10px;
   color: var(--muted);
   font-size: 0.9rem;
+}
+
+.check-question strong {
+  color: var(--accent-strong);
 }
 
 .connect-form {

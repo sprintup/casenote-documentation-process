@@ -101,6 +101,8 @@ const course = [
           "Draw a two-column workflow labeled SoE and SoR, then place CDP above both as the process that connects them.",
           "Write one sentence explaining how an organized CDP helps with timeliness, accuracy, or continuity of care."
         ],
+        checkQuestion:
+          "In your own words, what are two benefits of a CDP, and how do the SoE and SoR fit into it?",
         links: [docs.syncNotebook]
       },
       {
@@ -114,6 +116,8 @@ const course = [
           "Identify one risk of capturing notes only from memory at the end of the day.",
           "Write a short example of a rough field note that would still need cleanup before final entry."
         ],
+        checkQuestion:
+          "Describe the path a OneNote draft takes from field capture to desktop finalization and SoR entry.",
         links: [docs.shareToOneNote, docs.syncNotebook]
       },
       {
@@ -127,6 +131,8 @@ const course = [
           "For each row, note its purpose, status, and whether it satisfies final documentation requirements.",
           "Review a sample note idea and decide whether it belongs in the SoE, the SoR, or both in sequence."
         ],
+        checkQuestion:
+          "What is the difference between a draft in the SoE and a final note in the SoR?",
         links: [docs.syncNotebook]
       }
     ]
@@ -147,6 +153,8 @@ const course = [
           "Write a one-paragraph summary of OneNote as an approved case note draft workspace.",
           "Name the license, cloud storage, and device requirements that must be in place before using it for work notes."
         ],
+        checkQuestion:
+          "How would you explain OneNote's role in O365 and approved cloud storage to a new case manager?",
         links: [docs.oneNoteIphone, docs.syncNotebook]
       },
       {
@@ -160,6 +168,8 @@ const course = [
           "Create a new notebook with a clear work-approved name, such as Case Note Drafts.",
           "Confirm the notebook opens and is associated with the correct work account."
         ],
+        checkQuestion:
+          "What steps confirm you created a new OneNote notebook with the correct work account?",
         links: [docs.createNotebook]
       },
       {
@@ -173,6 +183,8 @@ const course = [
           "Record the approved account or cloud location connected to the notebook.",
           "Explain why knowing the location matters for access, syncing, and troubleshooting."
         ],
+        checkQuestion:
+          "Where is a OneNote notebook stored or synced, and why should a case manager know that location?",
         links: [docs.createNotebook, docs.syncNotebook]
       }
     ]
@@ -193,6 +205,8 @@ const course = [
           "Create two sections.",
           "Rename the sections Case 1 and Case 2, then verify both are visible in the notebook."
         ],
+        checkQuestion:
+          "How can OneNote sections be used as cases, and what should the two practice sections be named?",
         links: [docs.organizeNotes, docs.createSection]
       },
       {
@@ -206,6 +220,8 @@ const course = [
           "Right-click the notebook, open Notebook Sync Status, and choose Sync Now for the notebook.",
           "Wait a few minutes if needed, then confirm there is no sync error message."
         ],
+        checkQuestion:
+          "Explain what happens when OneNote desktop syncs with the cloud, and how you would manually start that sync.",
         links: [docs.syncNotebook],
         media: [media.syncDesktopMenu, media.syncDesktopNow]
       },
@@ -220,6 +236,8 @@ const course = [
           "Search for Microsoft OneNote and install it.",
           "Confirm the app is installed before signing in with the work account in the next module."
         ],
+        checkQuestion:
+          "Which app should be installed from the iOS App Store, and why is it needed for the SoE?",
         links: [docs.oneNoteAppStore, docs.oneNoteIphone],
         media: [media.appsOnIos]
       }
@@ -241,6 +259,8 @@ const course = [
           "Sign in with the work email account.",
           "Open the case note draft notebook created on the desktop."
         ],
+        checkQuestion:
+          "How do you sign in to OneNote on iPhone so the desktop notebook is available?",
         links: [docs.signInOneNote, docs.oneNoteIphone],
         media: [media.appsOnIos]
       },
@@ -255,6 +275,8 @@ const course = [
           "Open the notebook list and allow OneNote to refresh from the cloud. If needed, close and reopen the notebook after a few minutes.",
           "Add a small test draft to one section and confirm it later appears on the desktop."
         ],
+        checkQuestion:
+          "Explain what phone sync does with the cloud and how you would confirm Case 1 and Case 2 arrived on the phone.",
         links: [docs.syncNotebook, docs.oneNoteOffline],
         media: [media.syncPhone]
       }
@@ -276,6 +298,8 @@ const course = [
           "Open the share sheet, scroll to the end of the app row, and choose the more options control.",
           "Edit the app list, add OneNote, and move it near the top so it is easy to select next time."
         ],
+        checkQuestion:
+          "How do you move OneNote near the top of the iOS share sheet for the Add case note shortcut?",
         links: [docs.shareToOneNote],
         media: [media.appsOnIos]
       },
@@ -290,6 +314,8 @@ const course = [
           "Enter a brief practice note with a case label, date, and key detail.",
           "Share the note to the correct OneNote case section and verify it appears there."
         ],
+        checkQuestion:
+          "Describe how you would use Add case note to capture a draft into the SoE.",
         links: [docs.shareToOneNote, docs.syncNotebook]
       },
       {
@@ -303,6 +329,8 @@ const course = [
           "Create a new shortcut named Add case note.",
           "Add Ask for Input as the first action and Share as the second action, then save and test it."
         ],
+        checkQuestion:
+          "What two actions make up the Add case note shortcut, and what does each action do?",
         links: [docs.shortcutsGuide, docs.askForInput, docs.actionConnections],
         media: [media.appsOnIos]
       }
@@ -324,6 +352,8 @@ const course = [
           "Revise it into final case-note language with the required date, service, action, and outcome details.",
           "Enter it into the SoR within the expected business-day window."
         ],
+        checkQuestion:
+          "What steps convert a SoE draft into a final SoR case note within a business day?",
         links: [docs.syncNotebook]
       },
       {
@@ -337,6 +367,8 @@ const course = [
           "Identify one consequence of leaving a draft in the SoE past the required timeline.",
           "Create a personal end-of-day check for moving drafts into the SoR."
         ],
+        checkQuestion:
+          "Why does a draft in the SoE not satisfy the requirement for final SoR documentation?",
         links: [docs.syncNotebook]
       },
       {
@@ -350,6 +382,8 @@ const course = [
           "Return to the matching draft in the SoE.",
           "Delete or archive the draft according to local policy, then confirm the active case section is clear of completed drafts."
         ],
+        checkQuestion:
+          "After final SoR entry, what should happen to the matching SoE draft, and why?",
         links: [docs.deleteOneNoteIos, docs.organizeNotes]
       }
     ]
@@ -542,14 +576,14 @@ function createObjective(module, moduleIndex, objective, objectiveIndex) {
         </section>
         <section class="lo-section" aria-labelledby="${id}-connect">
           <h4 id="${id}-connect">Connect</h4>
-          <p class="connect-context">Context loaded: ${ref} in ${escapeHtml(module.title)}.</p>
+          <p class="check-question"><strong>Check question:</strong> ${escapeHtml(objective.checkQuestion)}</p>
           <form class="connect-form" data-lo-id="${id}">
-            <textarea name="question" placeholder="Ask a question about this objective"></textarea>
+            <textarea name="question" placeholder="Answer the check question or ask for coaching"></textarea>
             <div class="connect-actions">
-              <button class="ask-button" type="submit">Ask</button>
+              <button class="ask-button" type="submit">Check answer</button>
               <button class="clear-button" type="button">Clear</button>
             </div>
-            <div class="answer" aria-live="polite">Your answer will appear here.</div>
+            <div class="answer" aria-live="polite">Your coaching response will appear here.</div>
           </form>
         </section>
       </div>
@@ -769,7 +803,7 @@ async function askOpenAI(form) {
 
   button.disabled = true;
   button.textContent = "Asking...";
-  setAnswer(answer, `Thinking with ${context.ref} context loaded...`, "loading");
+  setAnswer(answer, `Reviewing your response for ${context.ref}...`, "loading");
 
   const prompt = buildPrompt(context, question);
 
@@ -799,7 +833,7 @@ async function askOpenAI(form) {
     setAnswer(answer, error.message || "The request could not be completed.", "error");
   } finally {
     button.disabled = false;
-    button.textContent = "Ask";
+    button.textContent = "Check answer";
   }
 }
 
@@ -808,21 +842,26 @@ function buildPrompt(context, question) {
   const mediaContext = (context.objective.media || []).map((item) => `${item.title}: ${item.caption}`).join("\n");
 
   return [
-    "You are helping a case manager learn a short course on case note documentation.",
-    "Answer in plain language. Keep the answer under 180 words unless the learner asks for a checklist.",
-    "The Do steps are recommended practice steps for completing the learning objective.",
-    "Use the course context below. If helpful, mention the specific LO reference number.",
+    "You are a supportive course coach for a case manager learning case note documentation.",
+    "Your task is to help the learner achieve the specific learning objective below.",
+    "Treat the learner's message as either an answer to the verification question or a request for coaching.",
+    "If the learner's answer sufficiently demonstrates the learning objective, say that it meets the objective and explicitly tell them they may mark the LO complete.",
+    "If the answer is incomplete or incorrect, do not tell them to mark it complete. Briefly explain what is missing, coach them through the next step, and ask one focused follow-up question.",
+    "If the learner asks a question instead of answering, answer it and then guide them back to the verification question.",
+    "Keep the response plain-language and under 180 words unless a checklist is needed.",
+    "The Do steps are recommended practice steps, not a separate submission requirement.",
     "",
     `LO reference: ${context.ref}`,
     `Module: ${context.module.title}`,
     `Module description: ${context.module.description}`,
     `Learning objective: ${context.objective.objective}`,
+    `Verification question: ${context.objective.checkQuestion}`,
     `Absorb context: ${context.objective.absorb}`,
     `Recommended Do steps: ${context.objective.doSteps.join(" ")}`,
     links ? `Helpful documentation links:\n${links}` : "Helpful documentation links: none listed",
     mediaContext ? `Available image context:\n${mediaContext}` : "Available image context: none listed",
     "",
-    `Learner question: ${question}`
+    `Learner response: ${question}`
   ].join("\n");
 }
 
@@ -1017,7 +1056,7 @@ document.addEventListener("click", (event) => {
   if (clearButton) {
     const form = clearButton.closest(".connect-form");
     form.elements.question.value = "";
-    setAnswer(form.querySelector(".answer"), "Your answer will appear here.");
+    setAnswer(form.querySelector(".answer"), "Your coaching response will appear here.");
     return;
   }
 
