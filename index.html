@@ -16,7 +16,7 @@
 
         <div class="progress-card">
           <div class="progress-topline">
-            <span id="progressLabel">0 of 16 complete</span>
+            <span id="progressLabel">0 of 17 complete</span>
             <span id="progressPercent">0%</span>
           </div>
           <div class="progress-track" aria-hidden="true">
@@ -29,11 +29,11 @@
             </div>
             <div>
               <span>Remaining</span>
-              <strong id="timeRemaining">115 min</strong>
+              <strong id="timeRemaining">121 min</strong>
             </div>
             <div>
               <span>Total</span>
-              <strong id="timeTotal">115 min</strong>
+              <strong id="timeTotal">121 min</strong>
             </div>
           </div>
         </div>
@@ -47,11 +47,15 @@
             <p class="eyebrow">Connect</p>
             <h2 id="apiKeyTitle">OpenAI API key</h2>
           </div>
-          <label class="api-key-field">
-            <span>API key</span>
-            <input id="apiKey" type="password" autocomplete="off" placeholder="sk-..." aria-describedby="apiNote">
-          </label>
-          <p id="apiNote">Used only in this browser tab. Avoid using shared or production keys on public pages.</p>
+          <form id="apiKeyForm" class="api-key-form">
+            <input class="visually-hidden" type="text" name="username" autocomplete="username" value="openai-api-key" aria-hidden="true" tabindex="-1">
+            <label class="api-key-field">
+              <span>API key</span>
+              <input id="apiKey" name="password" type="password" autocomplete="current-password" placeholder="sk-..." aria-describedby="apiNote apiStatus">
+            </label>
+          </form>
+          <p id="apiNote">Progress is saved locally, but the API key is not saved to localStorage. When supported, your browser may offer to store it in its password manager.</p>
+          <p id="apiStatus" class="api-status" aria-live="polite"></p>
         </section>
 
         <section class="course-intro" aria-labelledby="courseTitle">
@@ -71,6 +75,17 @@
         <section id="modules" class="modules" aria-label="Course modules"></section>
       </main>
     </div>
+
+    <dialog id="mediaModal" class="media-modal" aria-labelledby="mediaTitle">
+      <div class="media-modal-inner">
+        <div class="media-modal-header">
+          <h2 id="mediaTitle">Image</h2>
+          <button id="mediaClose" class="modal-close" type="button">Close</button>
+        </div>
+        <img id="mediaImage" alt="">
+        <p id="mediaCaption"></p>
+      </div>
+    </dialog>
 
     <script src="script.js"></script>
   </body>

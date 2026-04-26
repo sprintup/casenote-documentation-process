@@ -1,10 +1,94 @@
 const STORAGE_KEY = "case-note-short-course-progress";
+const CREDENTIAL_ID = "openai-api-key";
 const MODEL = "gpt-5-mini";
+
+const docs = {
+  createNotebook: {
+    title: "Create a new notebook - Microsoft Support",
+    url: "https://support.microsoft.com/en-us/office/create-a-new-notebook-5db754d4-165d-4eb0-82a0-6e30ea13aa0a"
+  },
+  organizeNotes: {
+    title: "Organize your notes - Microsoft Support",
+    url: "https://support.microsoft.com/en-us/office/organize-your-notes-c3c8b098-7f9c-4c2a-a0dc-ebb83bc76364"
+  },
+  createSection: {
+    title: "Create a new section - Microsoft Support",
+    url: "https://support.microsoft.com/en-us/office/create-a-new-section-43356c5d-05c0-4a6b-990a-58ed45eef34a"
+  },
+  syncNotebook: {
+    title: "Sync a notebook in OneNote - Microsoft Support",
+    url: "https://support.microsoft.com/en-us/office/sync-a-notebook-in-onenote-1986c4cf-7716-4c78-b7e7-479be30992c7"
+  },
+  oneNoteOffline: {
+    title: "Work offline in OneNote for iPhone or iPad - Microsoft Support",
+    url: "https://support.microsoft.com/en-us/office/work-offline-in-microsoft-onenote-for-ipad-or-iphone-d75e8b4d-fd37-4fd7-afbf-4ec285fe76c3"
+  },
+  oneNoteIphone: {
+    title: "Microsoft OneNote for iPhone - Microsoft Support",
+    url: "https://support.microsoft.com/en-us/office/microsoft-onenote-for-iphone-b93a0ea8-1285-4d31-a7c5-86a849731902"
+  },
+  signInOneNote: {
+    title: "Sign in to OneNote for iPad or iPhone - Microsoft Support",
+    url: "https://support.microsoft.com/en-gb/office/sign-in-to-onenote-for-ipad-or-iphone-d28f78bf-3f33-495a-806c-150aa2a8148d"
+  },
+  shareToOneNote: {
+    title: "Share content with OneNote for iPhone or iPad - Microsoft Support",
+    url: "https://support.microsoft.com/en-us/office/share-content-from-other-apps-with-onenote-for-iphone-or-ipad-f21123c3-2b5f-4fc6-bc75-62fecd284824"
+  },
+  deleteOneNoteIos: {
+    title: "Delete pages, sections, or notebooks in OneNote for iPhone or iPad - Microsoft Support",
+    url: "https://support.microsoft.com/en-us/office/delete-pages-sections-or-notebooks-in-onenote-for-ipad-or-iphone-a1450df9-b8a5-4078-a5ff-5818e133214f"
+  },
+  oneNoteAppStore: {
+    title: "Microsoft OneNote on the App Store",
+    url: "https://apps.apple.com/us/app/microsoft-onenote/id410395246"
+  },
+  shortcutsGuide: {
+    title: "Shortcuts User Guide - Apple Support",
+    url: "https://support.apple.com/en-us/HT209055"
+  },
+  askForInput: {
+    title: "Use Ask for Input in Shortcuts - Apple Support",
+    url: "https://support.apple.com/en-euro/guide/shortcuts/apd68b5c9161/ios"
+  },
+  actionConnections: {
+    title: "Action connections in Shortcuts - Apple Support",
+    url: "https://support.apple.com/guide/shortcuts/action-connections-apda850ab0e1/ios"
+  }
+};
+
+const media = {
+  appsOnIos: {
+    title: "Required iPhone apps",
+    src: "public/apps-on-ios.JPEG",
+    alt: "iPhone screen showing Shortcuts and OneNote app icons.",
+    caption: "Shortcuts captures the draft text. OneNote stores the draft in the system of engagement."
+  },
+  syncDesktopMenu: {
+    title: "OneNote desktop sync status",
+    src: "public/sync-desktop-1.png",
+    alt: "OneNote desktop notebook menu with Notebook Sync Status highlighted.",
+    caption: "On desktop, use the notebook menu to open sync status and check whether changes are moving through the cloud."
+  },
+  syncDesktopNow: {
+    title: "Sync this notebook now",
+    src: "public/sync-desktop-2.png",
+    alt: "OneNote desktop sync status window with Sync Now highlighted.",
+    caption: "Sync Now pushes local desktop changes up to the cloud and pulls newer cloud changes back down."
+  },
+  syncPhone: {
+    title: "OneNote iPhone syncing",
+    src: "public/syncing-on-phone.PNG",
+    alt: "OneNote iPhone notebook list showing a sync spinner.",
+    caption: "The mobile app checks the cloud copy and updates the phone with available notebook, section, and page changes."
+  }
+};
 
 const course = [
   {
     title: "Module 1: Terms",
-    time: 18,
+    description:
+      "Defines the shared language for the course: CDP, SoE, and SoR. These terms make the later setup steps easier to connect to documentation requirements.",
     objectives: [
       {
         time: 6,
@@ -16,7 +100,8 @@ const course = [
           "List three benefits of organized case notes for a case manager who works across multiple cases.",
           "Draw a two-column workflow labeled SoE and SoR, then place CDP above both as the process that connects them.",
           "Write one sentence explaining how an organized CDP helps with timeliness, accuracy, or continuity of care."
-        ]
+        ],
+        links: [docs.syncNotebook]
       },
       {
         time: 5,
@@ -28,7 +113,8 @@ const course = [
           "Describe the path a draft note takes from phone capture to desktop review to final SoR entry.",
           "Identify one risk of capturing notes only from memory at the end of the day.",
           "Write a short example of a rough field note that would still need cleanup before final entry."
-        ]
+        ],
+        links: [docs.shareToOneNote, docs.syncNotebook]
       },
       {
         time: 7,
@@ -40,13 +126,15 @@ const course = [
           "Create a two-row comparison for SoE draft and SoR final note.",
           "For each row, note its purpose, status, and whether it satisfies final documentation requirements.",
           "Review a sample note idea and decide whether it belongs in the SoE, the SoR, or both in sequence."
-        ]
+        ],
+        links: [docs.syncNotebook]
       }
     ]
   },
   {
     title: "Module 2: SoE - O365",
-    time: 19,
+    description:
+      "Sets up the Microsoft 365 and OneNote foundation. This turns the SoE idea from Module 1 into an approved workspace that can sync through a work account.",
     objectives: [
       {
         time: 7,
@@ -58,7 +146,8 @@ const course = [
           "Open Microsoft 365 or your work app list and confirm whether OneNote is available.",
           "Write a one-paragraph summary of OneNote as an approved case note draft workspace.",
           "Name the license, cloud storage, and device requirements that must be in place before using it for work notes."
-        ]
+        ],
+        links: [docs.oneNoteIphone, docs.syncNotebook]
       },
       {
         time: 6,
@@ -70,7 +159,8 @@ const course = [
           "Open OneNote on the work computer.",
           "Create a new notebook with a clear work-approved name, such as Case Note Drafts.",
           "Confirm the notebook opens and is associated with the correct work account."
-        ]
+        ],
+        links: [docs.createNotebook]
       },
       {
         time: 6,
@@ -82,13 +172,15 @@ const course = [
           "Find the notebook's storage or sync location from OneNote's notebook information area.",
           "Record the approved account or cloud location connected to the notebook.",
           "Explain why knowing the location matters for access, syncing, and troubleshooting."
-        ]
+        ],
+        links: [docs.createNotebook, docs.syncNotebook]
       }
     ]
   },
   {
     title: "Module 3: SoE - OneNote Desktop",
-    time: 22,
+    description:
+      "Builds the desktop notebook structure and verifies cloud sync. This is where the case note draft workspace becomes organized enough to support field-to-desktop work.",
     objectives: [
       {
         time: 8,
@@ -100,19 +192,22 @@ const course = [
           "Open the new case note draft notebook.",
           "Create two sections.",
           "Rename the sections Case 1 and Case 2, then verify both are visible in the notebook."
-        ]
+        ],
+        links: [docs.organizeNotes, docs.createSection]
       },
       {
         time: 6,
         objective:
           "Case manager will be able to sync data with the cloud from the desktop application. Syncing can sometimes take a few minutes and should also happen automatically.",
         absorb:
-          "Sync keeps the desktop notebook and cloud copy aligned. Manual sync is a useful check when notes need to move between desktop and mobile without waiting for the next automatic sync.",
+          "Sync keeps the desktop notebook and cloud copy aligned. When you sync, OneNote uploads new local changes to the cloud and downloads newer cloud changes back to the desktop. Manual sync is a useful check when notes need to move between desktop and mobile without waiting for the next automatic sync.",
         doSteps: [
           "Add a short test note to Case 1.",
-          "Use OneNote's sync option to force a manual sync.",
+          "Right-click the notebook, open Notebook Sync Status, and choose Sync Now for the notebook.",
           "Wait a few minutes if needed, then confirm there is no sync error message."
-        ]
+        ],
+        links: [docs.syncNotebook],
+        media: [media.syncDesktopMenu, media.syncDesktopNow]
       },
       {
         time: 8,
@@ -124,13 +219,16 @@ const course = [
           "Open the App Store on the iPhone.",
           "Search for Microsoft OneNote and install it.",
           "Confirm the app is installed before signing in with the work account in the next module."
-        ]
+        ],
+        links: [docs.oneNoteAppStore, docs.oneNoteIphone],
+        media: [media.appsOnIos]
       }
     ]
   },
   {
     title: "Module 4: SoE - OneNote iOS",
-    time: 16,
+    description:
+      "Connects the phone to the same notebook used on desktop. This extends the SoE into the field while keeping the cloud copy as the bridge between devices.",
     objectives: [
       {
         time: 8,
@@ -142,25 +240,30 @@ const course = [
           "Open OneNote on the iPhone.",
           "Sign in with the work email account.",
           "Open the case note draft notebook created on the desktop."
-        ]
+        ],
+        links: [docs.signInOneNote, docs.oneNoteIphone],
+        media: [media.appsOnIos]
       },
       {
         time: 8,
         objective:
           "Case manager will be able to sync cases from the cloud on the iOS application given 2 sections were created in the notebook. Syncing can sometimes take a few minutes and should also happen automatically.",
         absorb:
-          "Mobile sync confirms the SoE is available in the field. The two case sections created on desktop should appear on the phone after sync completes.",
+          "Mobile sync confirms the SoE is available in the field. OneNote compares the phone with the cloud copy: it downloads sections and pages created on desktop, and it uploads phone edits so the desktop can receive them later.",
         doSteps: [
           "Find Case 1 and Case 2 in the OneNote iOS notebook.",
-          "Pull to refresh or use the app's sync behavior if the sections do not appear immediately.",
+          "Open the notebook list and allow OneNote to refresh from the cloud. If needed, close and reopen the notebook after a few minutes.",
           "Add a small test draft to one section and confirm it later appears on the desktop."
-        ]
+        ],
+        links: [docs.syncNotebook, docs.oneNoteOffline],
+        media: [media.syncPhone]
       }
     ]
   },
   {
     title: "Module 5: SoE - iOS Shortcut",
-    time: 26,
+    description:
+      "Creates a fast capture path on the phone. The shortcut reduces friction so field notes can enter the SoE quickly and be finalized later.",
     objectives: [
       {
         time: 10,
@@ -172,7 +275,9 @@ const course = [
           "Run the Add case note shortcut and enter a fake note.",
           "Open the share sheet, scroll to the end of the app row, and choose the more options control.",
           "Edit the app list, add OneNote, and move it near the top so it is easy to select next time."
-        ]
+        ],
+        links: [docs.shareToOneNote],
+        media: [media.appsOnIos]
       },
       {
         time: 6,
@@ -184,7 +289,8 @@ const course = [
           "Run the Add case note shortcut.",
           "Enter a brief practice note with a case label, date, and key detail.",
           "Share the note to the correct OneNote case section and verify it appears there."
-        ]
+        ],
+        links: [docs.shareToOneNote, docs.syncNotebook]
       },
       {
         time: 10,
@@ -196,13 +302,16 @@ const course = [
           "Open the Shortcuts app from iOS search.",
           "Create a new shortcut named Add case note.",
           "Add Ask for Input as the first action and Share as the second action, then save and test it."
-        ]
+        ],
+        links: [docs.shortcutsGuide, docs.askForInput, docs.actionConnections],
+        media: [media.appsOnIos]
       }
     ]
   },
   {
     title: "Module 6: SoR",
-    time: 14,
+    description:
+      "Completes the documentation process by moving from draft to official record. It also closes the loop by cleaning up the SoE once the final note is safely in the SoR.",
     objectives: [
       {
         time: 7,
@@ -214,7 +323,8 @@ const course = [
           "Choose one draft note from the SoE.",
           "Revise it into final case-note language with the required date, service, action, and outcome details.",
           "Enter it into the SoR within the expected business-day window."
-        ]
+        ],
+        links: [docs.syncNotebook]
       },
       {
         time: 7,
@@ -226,7 +336,21 @@ const course = [
           "Write a two-sentence explanation of why an SoE draft is not the same as an SoR final note.",
           "Identify one consequence of leaving a draft in the SoE past the required timeline.",
           "Create a personal end-of-day check for moving drafts into the SoR."
-        ]
+        ],
+        links: [docs.syncNotebook]
+      },
+      {
+        time: 6,
+        objective:
+          "Case manager who has entered final case note into SoR will be able to acknowledge they must delete or archive the draft case note in the SoE to prevent clutter.",
+        absorb:
+          "Once the final note is in the SoR, the SoE draft should not keep competing with the official record. Deleting or archiving the draft prevents duplicate-looking notes, stale drafts, and visual clutter in the capture workspace.",
+        doSteps: [
+          "Confirm the final case note is saved in the SoR.",
+          "Return to the matching draft in the SoE.",
+          "Delete or archive the draft according to local policy, then confirm the active case section is clear of completed drafts."
+        ],
+        links: [docs.deleteOneNoteIos, docs.organizeNotes]
       }
     ]
   }
@@ -240,7 +364,14 @@ const progressBar = document.querySelector("#progressBar");
 const timeCompleted = document.querySelector("#timeCompleted");
 const timeRemaining = document.querySelector("#timeRemaining");
 const timeTotal = document.querySelector("#timeTotal");
+const apiKeyForm = document.querySelector("#apiKeyForm");
 const apiKeyInput = document.querySelector("#apiKey");
+const apiStatus = document.querySelector("#apiStatus");
+const mediaModal = document.querySelector("#mediaModal");
+const mediaTitle = document.querySelector("#mediaTitle");
+const mediaImage = document.querySelector("#mediaImage");
+const mediaCaption = document.querySelector("#mediaCaption");
+const mediaClose = document.querySelector("#mediaClose");
 
 let completed = loadProgress();
 
@@ -248,11 +379,21 @@ function totalObjectives() {
   return course.reduce((sum, module) => sum + module.objectives.length, 0);
 }
 
-function totalCourseMinutes() {
-  return course.reduce((moduleSum, module) => {
-    const objectiveMinutes = module.objectives.reduce((sum, objective) => sum + objective.time, 0);
-    return moduleSum + objectiveMinutes;
+function completedObjectiveCount() {
+  return course.reduce((sum, module, moduleIndex) => {
+    const moduleCount = module.objectives.filter((_, objectiveIndex) => {
+      return completed[objectiveId(moduleIndex, objectiveIndex)];
+    }).length;
+    return sum + moduleCount;
   }, 0);
+}
+
+function moduleMinutes(module) {
+  return module.objectives.reduce((sum, objective) => sum + objective.time, 0);
+}
+
+function totalCourseMinutes() {
+  return course.reduce((sum, module) => sum + moduleMinutes(module), 0);
 }
 
 function completedCourseMinutes() {
@@ -268,15 +409,51 @@ function objectiveId(moduleIndex, objectiveIndex) {
   return `m${moduleIndex + 1}-lo${objectiveIndex + 1}`;
 }
 
+function objectiveRef(moduleIndex, objectiveIndex) {
+  return `CDP-M${String(moduleIndex + 1).padStart(2, "0")}-LO${String(objectiveIndex + 1).padStart(2, "0")}`;
+}
+
+function getObjectiveById(id) {
+  for (let moduleIndex = 0; moduleIndex < course.length; moduleIndex += 1) {
+    const objectiveIndex = course[moduleIndex].objectives.findIndex((_, index) => objectiveId(moduleIndex, index) === id);
+    if (objectiveIndex !== -1) {
+      return {
+        module: course[moduleIndex],
+        moduleIndex,
+        objective: course[moduleIndex].objectives[objectiveIndex],
+        objectiveIndex,
+        ref: objectiveRef(moduleIndex, objectiveIndex)
+      };
+    }
+  }
+
+  return null;
+}
+
 function moduleCompletedCount(moduleIndex) {
   return course[moduleIndex].objectives.filter((_, objectiveIndex) => {
     return completed[objectiveId(moduleIndex, objectiveIndex)];
   }).length;
 }
 
+function isModuleComplete(moduleIndex) {
+  return moduleCompletedCount(moduleIndex) === course[moduleIndex].objectives.length;
+}
+
+function firstIncompleteModuleIndex(startIndex = 0) {
+  for (let index = startIndex; index < course.length; index += 1) {
+    if (!isModuleComplete(index)) {
+      return index;
+    }
+  }
+
+  return -1;
+}
+
 function loadProgress() {
   try {
-    return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {};
+    const parsed = JSON.parse(localStorage.getItem(STORAGE_KEY)) || {};
+    return Object.fromEntries(Object.entries(parsed).filter((entry) => entry[1] === true));
   } catch {
     return {};
   }
@@ -288,17 +465,24 @@ function saveProgress() {
 
 function renderCourse() {
   modulesContainer.innerHTML = "";
+  const openModuleIndex = Math.max(firstIncompleteModuleIndex(), 0);
 
   course.forEach((module, moduleIndex) => {
     const details = document.createElement("details");
     details.className = "module";
-    details.open = moduleIndex === 0;
+    details.dataset.moduleIndex = String(moduleIndex);
+    details.open = moduleIndex === openModuleIndex && !isModuleComplete(moduleIndex);
 
     const summary = document.createElement("summary");
     summary.innerHTML = `
-      <div>
+      <div class="module-summary-text">
         <h3 class="module-title">${escapeHtml(module.title)}</h3>
-        <div class="module-meta">${module.objectives.length} learning objectives - ${module.time} min</div>
+        <p class="module-description">${escapeHtml(module.description)}</p>
+        <div class="module-meta">
+          <span data-module-status></span>
+          <span>${module.objectives.length} learning objectives</span>
+          <span>${formatMinutes(moduleMinutes(module))}</span>
+        </div>
       </div>
       <span class="summary-action" aria-hidden="true"></span>
     `;
@@ -314,53 +498,96 @@ function renderCourse() {
     details.append(body);
     modulesContainer.append(details);
   });
+
+  updateModuleStates();
 }
 
 function createObjective(module, moduleIndex, objective, objectiveIndex) {
   const id = objectiveId(moduleIndex, objectiveIndex);
+  const ref = objectiveRef(moduleIndex, objectiveIndex);
   const article = document.createElement("article");
+  const isComplete = Boolean(completed[id]);
   article.id = id;
-  article.className = "learning-objective";
+  article.className = `learning-objective${isComplete ? " is-complete is-collapsed" : ""}`;
+  article.dataset.loId = id;
+  article.dataset.moduleIndex = String(moduleIndex);
 
+  const bodyId = `${id}-body`;
   const doItems = objective.doSteps.map((step) => `<li>${escapeHtml(step)}</li>`).join("");
 
   article.innerHTML = `
     <div class="lo-header">
-      <div>
-        <h3 class="lo-heading">Learning Objective ${objectiveIndex + 1}</h3>
-        <div class="lo-meta">${objective.time} min</div>
-      </div>
+      <button class="lo-toggle" type="button" aria-expanded="${isComplete ? "false" : "true"}" aria-controls="${bodyId}">
+        <span class="lo-ref">${ref}</span>
+        <span class="lo-title">Learning Objective ${objectiveIndex + 1}</span>
+        <span class="lo-meta">${formatMinutes(objective.time)} - <span data-lo-status>${isComplete ? "Complete" : "In progress"}</span></span>
+      </button>
       <label class="complete-toggle">
-        <input type="checkbox" data-complete="${id}" ${completed[id] ? "checked" : ""}>
+        <input type="checkbox" data-complete="${id}" ${isComplete ? "checked" : ""}>
         Complete
       </label>
     </div>
-    <div class="lo-sections">
-      <section class="lo-section" aria-labelledby="${id}-absorb">
-        <h4 id="${id}-absorb">Absorb</h4>
-        <p class="objective-text">${formatObjective(objective.objective)}</p>
-        <p>${escapeHtml(objective.absorb)}</p>
-      </section>
-      <section class="lo-section" aria-labelledby="${id}-do">
-        <h4 id="${id}-do">Do</h4>
-        <p class="do-note">Recommended steps to complete this objective:</p>
-        <ol>${doItems}</ol>
-      </section>
-      <section class="lo-section" aria-labelledby="${id}-connect">
-        <h4 id="${id}-connect">Connect</h4>
-        <form class="connect-form" data-module-title="${escapeAttribute(module.title)}" data-objective="${escapeAttribute(objective.objective)}" data-absorb="${escapeAttribute(objective.absorb)}" data-do="${escapeAttribute(objective.doSteps.join(" "))}">
-          <textarea name="question" placeholder="Ask a question about this objective"></textarea>
-          <div class="connect-actions">
-            <button class="ask-button" type="submit">Ask</button>
-            <button class="clear-button" type="button">Clear</button>
-          </div>
-          <div class="answer" aria-live="polite">Your answer will appear here.</div>
-        </form>
-      </section>
+    <div id="${bodyId}" class="lo-body">
+      <div class="lo-sections">
+        <section class="lo-section" aria-labelledby="${id}-absorb">
+          <h4 id="${id}-absorb">Absorb</h4>
+          <p class="objective-text">${formatObjective(objective.objective)}</p>
+          <p>${escapeHtml(objective.absorb)}</p>
+          ${renderResources(objective)}
+        </section>
+        <section class="lo-section" aria-labelledby="${id}-do">
+          <h4 id="${id}-do">Do</h4>
+          <p class="do-note">Recommended steps to complete this objective:</p>
+          <ol>${doItems}</ol>
+        </section>
+        <section class="lo-section" aria-labelledby="${id}-connect">
+          <h4 id="${id}-connect">Connect</h4>
+          <p class="connect-context">Context loaded: ${ref} in ${escapeHtml(module.title)}.</p>
+          <form class="connect-form" data-lo-id="${id}">
+            <textarea name="question" placeholder="Ask a question about this objective"></textarea>
+            <div class="connect-actions">
+              <button class="ask-button" type="submit">Ask</button>
+              <button class="clear-button" type="button">Clear</button>
+            </div>
+            <div class="answer" aria-live="polite">Your answer will appear here.</div>
+          </form>
+        </section>
+      </div>
     </div>
   `;
 
   return article;
+}
+
+function renderResources(objective) {
+  const links = objective.links || [];
+  const images = objective.media || [];
+
+  if (!links.length && !images.length) {
+    return "";
+  }
+
+  const linkItems = links
+    .map((link) => `<li><a href="${escapeAttribute(link.url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(link.title)}</a></li>`)
+    .join("");
+
+  const imageButtons = images
+    .map((item) => {
+      return `
+        <button class="media-button" type="button" data-media-src="${escapeAttribute(item.src)}" data-media-title="${escapeAttribute(item.title)}" data-media-alt="${escapeAttribute(item.alt)}" data-media-caption="${escapeAttribute(item.caption)}">
+          View image: ${escapeHtml(item.title)}
+        </button>
+      `;
+    })
+    .join("");
+
+  return `
+    <div class="resources">
+      <h5>Helpful resources</h5>
+      ${links.length ? `<ul class="resource-list">${linkItems}</ul>` : ""}
+      ${images.length ? `<div class="media-buttons">${imageButtons}</div>` : ""}
+    </div>
+  `;
 }
 
 function renderProgress() {
@@ -380,7 +607,8 @@ function renderProgress() {
     const items = wrapper.querySelector(".progress-items");
     module.objectives.forEach((objective, objectiveIndex) => {
       const id = objectiveId(moduleIndex, objectiveIndex);
-      const objectiveLabel = `LO ${objectiveIndex + 1}: ${shortenObjective(objective.objective)}`;
+      const ref = objectiveRef(moduleIndex, objectiveIndex);
+      const objectiveLabel = `${ref}: ${shortenObjective(objective.objective)}`;
       const item = document.createElement("div");
       item.className = "progress-item";
       item.innerHTML = `
@@ -393,7 +621,7 @@ function renderProgress() {
     progressList.append(wrapper);
   });
 
-  const completedCount = Object.values(completed).filter(Boolean).length;
+  const completedCount = completedObjectiveCount();
   const total = totalObjectives();
   const percent = total ? Math.round((completedCount / total) * 100) : 0;
   const totalMinutes = totalCourseMinutes();
@@ -409,23 +637,123 @@ function renderProgress() {
 }
 
 function updateCompletion(id, value) {
-  completed[id] = value;
+  const context = getObjectiveById(id);
+  if (!context) {
+    return;
+  }
+
+  if (value) {
+    completed[id] = true;
+  } else {
+    delete completed[id];
+  }
+
   saveProgress();
   syncCompletionControls(id, value);
+  setObjectiveState(id, value);
   renderProgress();
+  updateModuleStates();
+
+  if (value && isModuleComplete(context.moduleIndex)) {
+    advanceFromCompletedModule(context.moduleIndex);
+  }
+
+  if (!value) {
+    openModule(context.moduleIndex);
+    setObjectiveCollapsed(id, false);
+  }
 }
 
 function syncCompletionControls(id, value) {
-  document.querySelectorAll(`[data-complete="${CSS.escape(id)}"]`).forEach((checkbox) => {
+  document.querySelectorAll(`[data-complete="${cssEscape(id)}"]`).forEach((checkbox) => {
     checkbox.checked = value;
   });
 }
 
+function setObjectiveState(id, isComplete) {
+  const objective = document.querySelector(`[data-lo-id="${cssEscape(id)}"]`);
+  if (!objective) {
+    return;
+  }
+
+  objective.classList.toggle("is-complete", isComplete);
+  const status = objective.querySelector("[data-lo-status]");
+  if (status) {
+    status.textContent = isComplete ? "Complete" : "In progress";
+  }
+
+  if (isComplete) {
+    setObjectiveCollapsed(id, true);
+  }
+}
+
+function setObjectiveCollapsed(id, isCollapsed) {
+  const objective = document.querySelector(`[data-lo-id="${cssEscape(id)}"]`);
+  if (!objective) {
+    return;
+  }
+
+  objective.classList.toggle("is-collapsed", isCollapsed);
+  const toggle = objective.querySelector(".lo-toggle");
+  if (toggle) {
+    toggle.setAttribute("aria-expanded", String(!isCollapsed));
+  }
+}
+
+function updateModuleStates() {
+  course.forEach((module, moduleIndex) => {
+    const details = document.querySelector(`[data-module-index="${moduleIndex}"]`);
+    if (!details) {
+      return;
+    }
+
+    const completedCount = moduleCompletedCount(moduleIndex);
+    const remainingCount = module.objectives.length - completedCount;
+    const status = details.querySelector("[data-module-status]");
+    details.classList.toggle("is-complete", remainingCount === 0);
+
+    if (status) {
+      status.textContent = remainingCount === 0 ? "Module complete" : `${remainingCount} ${pluralize("LO", remainingCount)} left`;
+    }
+  });
+}
+
+function advanceFromCompletedModule(moduleIndex) {
+  const completedModule = document.querySelector(`[data-module-index="${moduleIndex}"]`);
+  if (completedModule) {
+    completedModule.open = false;
+  }
+
+  const nextModuleIndex = firstIncompleteModuleIndex(moduleIndex + 1);
+  if (nextModuleIndex === -1) {
+    return;
+  }
+
+  openModule(nextModuleIndex);
+  const nextModule = document.querySelector(`[data-module-index="${nextModuleIndex}"]`);
+  if (nextModule) {
+    nextModule.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+}
+
+function openModule(moduleIndex) {
+  const module = document.querySelector(`[data-module-index="${moduleIndex}"]`);
+  if (module) {
+    module.open = true;
+  }
+}
+
 async function askOpenAI(form) {
+  const context = getObjectiveById(form.dataset.loId);
   const apiKey = apiKeyInput.value.trim();
   const question = form.elements.question.value.trim();
   const answer = form.querySelector(".answer");
   const button = form.querySelector(".ask-button");
+
+  if (!context) {
+    setAnswer(answer, "This learning objective context could not be loaded.", "error");
+    return;
+  }
 
   if (!apiKey) {
     setAnswer(answer, "Enter an OpenAI API key at the top of the page first.", "error");
@@ -441,21 +769,9 @@ async function askOpenAI(form) {
 
   button.disabled = true;
   button.textContent = "Asking...";
-  setAnswer(answer, "Thinking...", "loading");
+  setAnswer(answer, `Thinking with ${context.ref} context loaded...`, "loading");
 
-  const prompt = [
-    "You are helping a case manager learn a short course on case note documentation.",
-    "Answer in plain language. Keep the answer under 180 words unless the learner asks for a checklist.",
-    "The Do steps are recommended practice steps for completing the learning objective.",
-    "Use only the course context below unless the learner asks for a general explanation.",
-    "",
-    `Module: ${form.dataset.moduleTitle}`,
-    `Learning objective: ${form.dataset.objective}`,
-    `Absorb context: ${form.dataset.absorb}`,
-    `Recommended Do steps: ${form.dataset.do}`,
-    "",
-    `Learner question: ${question}`
-  ].join("\n");
+  const prompt = buildPrompt(context, question);
 
   try {
     const response = await fetch("https://api.openai.com/v1/responses", {
@@ -478,12 +794,36 @@ async function askOpenAI(form) {
     }
 
     setAnswer(answer, extractOutputText(data) || "I did not receive a text answer. Try rephrasing your question.");
+    rememberApiKeyInBrowser();
   } catch (error) {
     setAnswer(answer, error.message || "The request could not be completed.", "error");
   } finally {
     button.disabled = false;
     button.textContent = "Ask";
   }
+}
+
+function buildPrompt(context, question) {
+  const links = (context.objective.links || []).map((link) => `${link.title}: ${link.url}`).join("\n");
+  const mediaContext = (context.objective.media || []).map((item) => `${item.title}: ${item.caption}`).join("\n");
+
+  return [
+    "You are helping a case manager learn a short course on case note documentation.",
+    "Answer in plain language. Keep the answer under 180 words unless the learner asks for a checklist.",
+    "The Do steps are recommended practice steps for completing the learning objective.",
+    "Use the course context below. If helpful, mention the specific LO reference number.",
+    "",
+    `LO reference: ${context.ref}`,
+    `Module: ${context.module.title}`,
+    `Module description: ${context.module.description}`,
+    `Learning objective: ${context.objective.objective}`,
+    `Absorb context: ${context.objective.absorb}`,
+    `Recommended Do steps: ${context.objective.doSteps.join(" ")}`,
+    links ? `Helpful documentation links:\n${links}` : "Helpful documentation links: none listed",
+    mediaContext ? `Available image context:\n${mediaContext}` : "Available image context: none listed",
+    "",
+    `Learner question: ${question}`
+  ].join("\n");
 }
 
 function extractOutputText(data) {
@@ -507,6 +847,74 @@ function setAnswer(answer, text, state = "ready") {
   answer.dataset.state = state;
 }
 
+async function loadApiCredential() {
+  if (!window.PasswordCredential || !navigator.credentials) {
+    return;
+  }
+
+  try {
+    const credential = await navigator.credentials.get({
+      password: true,
+      mediation: "optional"
+    });
+
+    if (credential && credential.id === CREDENTIAL_ID && credential.password) {
+      apiKeyInput.value = credential.password;
+      setApiStatus("API key loaded from this browser's password manager.");
+    }
+  } catch {
+    setApiStatus("");
+  }
+}
+
+async function rememberApiKeyInBrowser() {
+  const apiKey = apiKeyInput.value.trim();
+  if (!apiKey || !window.PasswordCredential || !navigator.credentials || !window.isSecureContext) {
+    return;
+  }
+
+  try {
+    const credential = new PasswordCredential({
+      id: CREDENTIAL_ID,
+      name: "OpenAI API key",
+      password: apiKey
+    });
+    await navigator.credentials.store(credential);
+    setApiStatus("API key offered to this browser's password manager.");
+  } catch {
+    setApiStatus("");
+  }
+}
+
+function setApiStatus(message) {
+  if (apiStatus) {
+    apiStatus.textContent = message;
+  }
+}
+
+function openMediaModal(button) {
+  mediaTitle.textContent = button.dataset.mediaTitle || "Image";
+  mediaImage.src = button.dataset.mediaSrc || "";
+  mediaImage.alt = button.dataset.mediaAlt || "";
+  mediaCaption.textContent = button.dataset.mediaCaption || "";
+
+  if (typeof mediaModal.showModal === "function") {
+    mediaModal.showModal();
+  } else {
+    mediaModal.setAttribute("open", "");
+  }
+}
+
+function closeMediaModal() {
+  if (typeof mediaModal.close === "function") {
+    mediaModal.close();
+  } else {
+    mediaModal.removeAttribute("open");
+  }
+
+  mediaImage.removeAttribute("src");
+}
+
 function shortenObjective(objective) {
   const cleaned = objective
     .replace(/^A case manager that manages case notes across multiple cases will be able to /i, "")
@@ -522,7 +930,7 @@ function formatMinutes(minutes) {
 
 function formatObjective(objective) {
   const actionVerbPattern =
-    /(will be able to\s+)(recognize|distinguish|summarize|open|describe|sync|download|log in|prioritize|record|add|convert)\b/i;
+    /(will be able to\s+)(acknowledge|recognize|distinguish|summarize|open|describe|sync|download|log in|prioritize|record|add|convert)\b/i;
   const match = objective.match(actionVerbPattern);
 
   if (!match || match.index === undefined) {
@@ -540,6 +948,18 @@ function formatObjective(objective) {
     `<strong>${escapeHtml(verb)}</strong>`,
     escapeHtml(objective.slice(verbEnd))
   ].join("");
+}
+
+function pluralize(word, count) {
+  return count === 1 ? word : `${word}s`;
+}
+
+function cssEscape(value) {
+  if (window.CSS && typeof window.CSS.escape === "function") {
+    return window.CSS.escape(value);
+  }
+
+  return String(value).replace(/["\\]/g, "\\$&");
 }
 
 function escapeHtml(value) {
@@ -575,15 +995,55 @@ document.addEventListener("submit", (event) => {
 });
 
 document.addEventListener("click", (event) => {
-  const clearButton = event.target.closest(".clear-button");
-  if (!clearButton) {
+  const progressLink = event.target.closest(".progress-item a");
+  if (progressLink) {
+    const id = progressLink.getAttribute("href").replace("#", "");
+    const context = getObjectiveById(id);
+    if (context) {
+      openModule(context.moduleIndex);
+      setObjectiveCollapsed(id, false);
+    }
     return;
   }
 
-  const form = clearButton.closest(".connect-form");
-  form.elements.question.value = "";
-  setAnswer(form.querySelector(".answer"), "Your answer will appear here.");
+  const toggle = event.target.closest(".lo-toggle");
+  if (toggle) {
+    const objective = toggle.closest(".learning-objective");
+    setObjectiveCollapsed(objective.dataset.loId, !objective.classList.contains("is-collapsed"));
+    return;
+  }
+
+  const clearButton = event.target.closest(".clear-button");
+  if (clearButton) {
+    const form = clearButton.closest(".connect-form");
+    form.elements.question.value = "";
+    setAnswer(form.querySelector(".answer"), "Your answer will appear here.");
+    return;
+  }
+
+  const mediaButton = event.target.closest(".media-button");
+  if (mediaButton) {
+    openMediaModal(mediaButton);
+  }
+});
+
+apiKeyForm.addEventListener("submit", (event) => {
+  event.preventDefault();
+  rememberApiKeyInBrowser();
+});
+
+apiKeyInput.addEventListener("change", () => {
+  rememberApiKeyInBrowser();
+});
+
+mediaClose.addEventListener("click", closeMediaModal);
+
+mediaModal.addEventListener("click", (event) => {
+  if (event.target === mediaModal) {
+    closeMediaModal();
+  }
 });
 
 renderCourse();
 renderProgress();
+loadApiCredential();
