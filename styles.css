@@ -150,6 +150,22 @@ button {
   font-size: 0.9rem;
 }
 
+.reset-state-button {
+  width: 100%;
+  min-height: 38px;
+  margin-top: 14px;
+  padding: 8px 10px;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: var(--radius);
+  background: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+  font-weight: 700;
+}
+
+.reset-state-button:hover {
+  background: rgba(255, 255, 255, 0.16);
+}
+
 .progress-list {
   display: grid;
   gap: 18px;

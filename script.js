@@ -398,6 +398,7 @@ const progressBar = document.querySelector("#progressBar");
 const timeCompleted = document.querySelector("#timeCompleted");
 const timeRemaining = document.querySelector("#timeRemaining");
 const timeTotal = document.querySelector("#timeTotal");
+const resetStateButton = document.querySelector("#resetState");
 const apiKeyForm = document.querySelector("#apiKeyForm");
 const apiKeyInput = document.querySelector("#apiKey");
 const apiStatus = document.querySelector("#apiStatus");
@@ -495,6 +496,18 @@ function loadProgress() {
 
 function saveProgress() {
   localStorage.setItem(STORAGE_KEY, JSON.stringify(completed));
+}
+
+function resetState() {
+  const shouldReset = window.confirm("Reset all saved course progress?");
+  if (!shouldReset) {
+    return;
+  }
+
+  completed = {};
+  localStorage.removeItem(STORAGE_KEY);
+  renderCourse();
+  renderProgress();
 }
 
 function renderCourse() {
@@ -1076,6 +1089,8 @@ apiKeyInput.addEventListener("change", () => {
 });
 
 mediaClose.addEventListener("click", closeMediaModal);
+
+resetStateButton.addEventListener("click", resetState);
 
 mediaModal.addEventListener("click", (event) => {
   if (event.target === mediaModal) {
