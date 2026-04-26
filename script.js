@@ -1,6 +1,8 @@
 const STORAGE_KEY = "case-note-short-course-progress";
 const CREDENTIAL_ID = "openai-api-key";
 const MODEL = "gpt-5-mini";
+const COACHING_EMPTY_MESSAGE =
+  "Your coaching response will appear here. Your coach will tell you when to mark this learning objective as complete";
 
 const docs = {
   createNotebook: {
@@ -596,7 +598,7 @@ function createObjective(module, moduleIndex, objective, objectiveIndex) {
               <button class="ask-button" type="submit">Check answer</button>
               <button class="clear-button" type="button">Clear</button>
             </div>
-            <div class="answer" aria-live="polite">Your coaching response will appear here.</div>
+            <div class="answer" aria-live="polite">${COACHING_EMPTY_MESSAGE}</div>
           </form>
         </section>
       </div>
@@ -1069,7 +1071,7 @@ document.addEventListener("click", (event) => {
   if (clearButton) {
     const form = clearButton.closest(".connect-form");
     form.elements.question.value = "";
-    setAnswer(form.querySelector(".answer"), "Your coaching response will appear here.");
+    setAnswer(form.querySelector(".answer"), COACHING_EMPTY_MESSAGE);
     return;
   }
 
