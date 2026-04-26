@@ -1,6 +1,8 @@
 const STORAGE_KEY = "case-note-short-course-progress";
 const CREDENTIAL_ID = "openai-api-key";
 const MODEL = "gpt-5-mini";
+const ULTIMATE_GOAL =
+  "The ultimate goal is for the learner to save a note using the Add case note iOS shortcut, send it to the proper OneNote case section, sync it through the cloud, and access it on the desktop.";
 const COACHING_EMPTY_MESSAGE =
   "Your coaching response will appear here. Your coach will tell you when to mark this learning objective as complete";
 
@@ -104,8 +106,7 @@ const course = [
           "Write one sentence explaining how an organized CDP helps with timeliness, accuracy, or continuity of care."
         ],
         checkQuestion:
-          "In your own words, what are two benefits of a CDP, and how do the SoE and SoR fit into it?",
-        links: [docs.syncNotebook]
+          "In your own words, what are two benefits of a CDP, and how do the SoE and SoR fit into it?"
       },
       {
         time: 5,
@@ -119,8 +120,7 @@ const course = [
           "Write a short example of a rough field note that would still need cleanup before final entry."
         ],
         checkQuestion:
-          "Describe the path a OneNote draft takes from field capture to desktop finalization and SoR entry.",
-        links: [docs.shareToOneNote, docs.syncNotebook]
+          "Describe the path a OneNote draft takes from field capture to desktop finalization and SoR entry."
       },
       {
         time: 7,
@@ -134,8 +134,7 @@ const course = [
           "Review a sample note idea and decide whether it belongs in the SoE, the SoR, or both in sequence."
         ],
         checkQuestion:
-          "What is the difference between a draft in the SoE and a final note in the SoR?",
-        links: [docs.syncNotebook]
+          "What is the difference between a draft in the SoE and a final note in the SoR?"
       }
     ]
   },
@@ -156,8 +155,7 @@ const course = [
           "Name the license, cloud storage, and device requirements that must be in place before using it for work notes."
         ],
         checkQuestion:
-          "How would you explain OneNote's role in O365 and approved cloud storage to a new case manager?",
-        links: [docs.oneNoteIphone, docs.syncNotebook]
+          "How would you explain OneNote's role in O365 and approved cloud storage to a new case manager?"
       },
       {
         time: 6,
@@ -187,7 +185,7 @@ const course = [
         ],
         checkQuestion:
           "Where is a OneNote notebook stored or synced, and why should a case manager know that location?",
-        links: [docs.createNotebook, docs.syncNotebook]
+        links: [docs.syncNotebook]
       }
     ]
   },
@@ -209,7 +207,7 @@ const course = [
         ],
         checkQuestion:
           "How can OneNote sections be used as cases, and what should the two practice sections be named?",
-        links: [docs.organizeNotes, docs.createSection]
+        links: [docs.createSection]
       },
       {
         time: 6,
@@ -240,7 +238,7 @@ const course = [
         ],
         checkQuestion:
           "Which app should be installed from the iOS App Store, and why is it needed for the SoE?",
-        links: [docs.oneNoteAppStore, docs.oneNoteIphone],
+        links: [docs.oneNoteAppStore],
         media: [media.appsOnIos]
       }
     ]
@@ -263,7 +261,7 @@ const course = [
         ],
         checkQuestion:
           "How do you sign in to OneNote on iPhone so the desktop notebook is available?",
-        links: [docs.signInOneNote, docs.oneNoteIphone],
+        links: [docs.signInOneNote],
         media: [media.appsOnIos]
       },
       {
@@ -279,7 +277,7 @@ const course = [
         ],
         checkQuestion:
           "Explain what phone sync does with the cloud and how you would confirm Case 1 and Case 2 arrived on the phone.",
-        links: [docs.syncNotebook, docs.oneNoteOffline],
+        links: [docs.oneNoteOffline],
         media: [media.syncPhone]
       }
     ]
@@ -314,11 +312,12 @@ const course = [
         doSteps: [
           "Run the Add case note shortcut.",
           "Enter a brief practice note with a case label, date, and key detail.",
+          "Select the proper case section in OneNote before saving the note.",
           "Share the note to the correct OneNote case section and verify it appears there."
         ],
         checkQuestion:
           "Describe how you would use Add case note to capture a draft into the SoE.",
-        links: [docs.shareToOneNote, docs.syncNotebook]
+        links: [docs.shareToOneNote]
       },
       {
         time: 10,
@@ -329,11 +328,12 @@ const course = [
         doSteps: [
           "Open the Shortcuts app from iOS search.",
           "Create a new shortcut named Add case note.",
-          "Add Ask for Input as the first action and Share as the second action, then save and test it."
+          "Add Ask for Input as the first action and Share as the second action.",
+          "Test it by entering a practice note, choosing OneNote, and selecting the proper case section before saving."
         ],
         checkQuestion:
-          "What two actions make up the Add case note shortcut, and what does each action do?",
-        links: [docs.shortcutsGuide, docs.askForInput, docs.actionConnections],
+          "What two actions make up the Add case note shortcut, and how do you choose the proper case when testing it?",
+        links: [docs.oneNoteAppStore, docs.askForInput],
         media: [media.appsOnIos]
       }
     ]
@@ -355,8 +355,7 @@ const course = [
           "Enter it into the SoR within the expected business-day window."
         ],
         checkQuestion:
-          "What steps convert a SoE draft into a final SoR case note within a business day?",
-        links: [docs.syncNotebook]
+          "What steps convert a SoE draft into a final SoR case note within a business day?"
       },
       {
         time: 7,
@@ -370,8 +369,7 @@ const course = [
           "Create a personal end-of-day check for moving drafts into the SoR."
         ],
         checkQuestion:
-          "Why does a draft in the SoE not satisfy the requirement for final SoR documentation?",
-        links: [docs.syncNotebook]
+          "Why does a draft in the SoE not satisfy the requirement for final SoR documentation?"
       },
       {
         time: 6,
@@ -386,7 +384,7 @@ const course = [
         ],
         checkQuestion:
           "After final SoR entry, what should happen to the matching SoE draft, and why?",
-        links: [docs.deleteOneNoteIos, docs.organizeNotes]
+        links: [docs.deleteOneNoteIos]
       }
     ]
   }
@@ -401,6 +399,7 @@ const timeCompleted = document.querySelector("#timeCompleted");
 const timeRemaining = document.querySelector("#timeRemaining");
 const timeTotal = document.querySelector("#timeTotal");
 const resetStateButton = document.querySelector("#resetState");
+const completionMessage = document.querySelector("#completionMessage");
 const apiKeyForm = document.querySelector("#apiKeyForm");
 const apiKeyInput = document.querySelector("#apiKey");
 const apiStatus = document.querySelector("#apiStatus");
@@ -447,7 +446,7 @@ function objectiveId(moduleIndex, objectiveIndex) {
 }
 
 function objectiveRef(moduleIndex, objectiveIndex) {
-  return `CDP-M${String(moduleIndex + 1).padStart(2, "0")}-LO${String(objectiveIndex + 1).padStart(2, "0")}`;
+  return `M${String(moduleIndex + 1).padStart(2, "0")}-LO${String(objectiveIndex + 1).padStart(2, "0")}`;
 }
 
 function getObjectiveById(id) {
@@ -683,6 +682,7 @@ function renderProgress() {
   timeCompleted.textContent = formatMinutes(completedMinutes);
   timeRemaining.textContent = formatMinutes(remainingMinutes);
   timeTotal.textContent = formatMinutes(totalMinutes);
+  updateCompletionMessage(completedCount === total);
 }
 
 function updateCompletion(id, value) {
@@ -775,6 +775,8 @@ function advanceFromCompletedModule(moduleIndex) {
 
   const nextModuleIndex = firstIncompleteModuleIndex(moduleIndex + 1);
   if (nextModuleIndex === -1) {
+    updateCompletionMessage(true);
+    completionMessage.scrollIntoView({ behavior: "smooth", block: "start" });
     return;
   }
 
@@ -790,6 +792,14 @@ function openModule(moduleIndex) {
   if (module) {
     module.open = true;
   }
+}
+
+function updateCompletionMessage(isComplete) {
+  if (!completionMessage) {
+    return;
+  }
+
+  completionMessage.hidden = !isComplete;
 }
 
 async function askOpenAI(form) {
@@ -863,6 +873,9 @@ function buildPrompt(context, question) {
     "Use warm encouragement, short sentences, and step-by-step guidance. Avoid jargon unless you immediately explain it.",
     "Do not sound patronizing. Treat hesitation as normal and solvable.",
     "Your task is to help the learner achieve the specific learning objective below.",
+    ULTIMATE_GOAL,
+    "It is not critical that the learner understand every detail of every learning objective. Prioritize practical progress toward the ultimate goal.",
+    "If the learner is close enough to keep moving safely, encourage them and tell them the next concrete action.",
     "Treat the learner's message as either an answer to the verification question or a request for coaching.",
     "If the learner's answer sufficiently demonstrates the learning objective, say that it meets the objective and explicitly tell them they may mark the LO complete.",
     "If the answer is incomplete or incorrect, do not tell them to mark it complete. Reassure them, name one thing they already have right, explain what is missing, coach them through the next step, and ask one focused follow-up question.",
