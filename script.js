@@ -102,9 +102,9 @@ const course = [
         absorb:
           "A CDP is the repeatable workflow that keeps notes consistent from first capture through final filing. It reduces missing details, duplicate work, and uncertainty about where each note belongs.",
         doSteps: [
-          "List three benefits of organized case notes for a case manager who works across multiple cases.",
-          "Draw a two-column workflow labeled SoE and SoR, then place CDP above both as the process that connects them.",
-          "Write one sentence explaining how an organized CDP helps with timeliness, accuracy, or continuity of care."
+          "Name OneNote as the draft workspace for this course.",
+          "Name the SoR as the place where the final case note must end up.",
+          "Keep the practical goal in mind: phone note first, desktop access next, final record last."
         ],
         checkQuestion:
           "In your own words, what are two benefits of a CDP, and how do the SoE and SoR fit into it?"
@@ -116,9 +116,9 @@ const course = [
         absorb:
           "In this course, OneNote is treated as a first-capture tool. It is useful because a draft can begin in the field, sync to the desktop, and then be cleaned up before entry into the official record.",
         doSteps: [
-          "Describe the path a draft note takes from phone capture to desktop review to final SoR entry.",
-          "Identify one risk of capturing notes only from memory at the end of the day.",
-          "Write a short example of a rough field note that would still need cleanup before final entry."
+          "Picture the note starting on the iPhone.",
+          "Picture that note syncing into OneNote on the desktop.",
+          "Use the desktop copy as the draft you will clean up for the SoR."
         ],
         checkQuestion:
           "Describe the path a OneNote draft takes from field capture to desktop finalization and SoR entry."
@@ -130,9 +130,9 @@ const course = [
         absorb:
           "The SoE is where work-in-progress notes can be captured and organized. The SoR is the official destination for final documentation that satisfies agency, program, or legal requirements.",
         doSteps: [
-          "Create a two-row comparison for SoE draft and SoR final note.",
-          "For each row, note its purpose, status, and whether it satisfies final documentation requirements.",
-          "Review a sample note idea and decide whether it belongs in the SoE, the SoR, or both in sequence."
+          "Treat OneNote as the temporary draft area.",
+          "Treat the SoR as the official final record.",
+          "Do not stop at the draft if the case note still needs to be entered into the SoR."
         ],
         checkQuestion:
           "What is the difference between a draft in the SoE and a final note in the SoR?"
@@ -151,9 +151,9 @@ const course = [
         absorb:
           "OneNote is a notebook application in the Microsoft 365 ecosystem. With an enterprise license, notebooks can sync through approved cloud storage so notes can move between a work computer and mobile device.",
         doSteps: [
-          "Open Microsoft 365 or your work app list and confirm whether OneNote is available.",
-          "Write a one-paragraph summary of OneNote as an approved case note draft workspace.",
-          "Name the license, cloud storage, and device requirements that must be in place before using it for work notes."
+          "Confirm OneNote is available under the work account.",
+          "Confirm the notebook will sync through approved work cloud storage.",
+          "Use only the approved work account for the case note draft workflow."
         ],
         checkQuestion:
           "How would you explain OneNote's role in O365 and approved cloud storage to a new case manager?"
@@ -166,8 +166,8 @@ const course = [
           "A notebook is the top-level container for notes. Creating a dedicated notebook for case note drafts helps separate work documentation from unrelated personal or team notes.",
         doSteps: [
           "Open OneNote on the work computer.",
-          "Create a new notebook with a clear work-approved name, such as Case Note Drafts.",
-          "Confirm the notebook opens and is associated with the correct work account."
+          "Create or open the Case Management notebook.",
+          "Confirm the notebook is connected to the work account."
         ],
         checkQuestion:
           "What steps confirm you created a new OneNote notebook with the correct work account?",
@@ -180,9 +180,9 @@ const course = [
         absorb:
           "OneNote notebooks may appear in the desktop application while the underlying files are stored in an approved cloud location. Knowing the location helps confirm that sync and access are working as expected.",
         doSteps: [
-          "Find the notebook's storage or sync location from OneNote's notebook information area.",
-          "Record the approved account or cloud location connected to the notebook.",
-          "Explain why knowing the location matters for access, syncing, and troubleshooting."
+          "Find the notebook account or sync location.",
+          "Confirm it is the work account.",
+          "Use that same account later on the phone."
         ],
         checkQuestion:
           "Where is a OneNote notebook stored or synced, and why should a case manager know that location?",
@@ -203,8 +203,8 @@ const course = [
           "Sections are useful dividers inside a notebook. In a simple CDP, each section can represent a case so draft notes stay grouped before final entry.",
         doSteps: [
           "Open the new case note draft notebook.",
-          "Create two sections.",
-          "Rename the sections Case 1 and Case 2, then verify both are visible in the notebook."
+          "Create or confirm sections for Case 1 and Case 2.",
+          "Use the correct case section as the destination for practice notes."
         ],
         checkQuestion:
           "How can OneNote sections be used as cases, and what should the two practice sections be named?",
@@ -219,7 +219,7 @@ const course = [
         doSteps: [
           "Add a short test note to Case 1.",
           "Right-click the notebook, open Notebook Sync Status, and choose Sync Now for the notebook.",
-          "Wait a few minutes if needed, then confirm there is no sync error message."
+          "Confirm the desktop notebook says it is up to date."
         ],
         checkQuestion:
           "Explain what happens when OneNote desktop syncs with the cloud, and how you would manually start that sync.",
@@ -234,8 +234,8 @@ const course = [
           "The mobile app extends the SoE into the field. Downloading the correct app and connecting it to the work account prepares the case manager to capture notes near the time of service.",
         doSteps: [
           "Open the App Store on the iPhone.",
-          "Search for Microsoft OneNote and install it.",
-          "Confirm the app is installed before signing in with the work account in the next module."
+          "Install Microsoft OneNote.",
+          "Confirm the OneNote icon is on the phone."
         ],
         checkQuestion:
           "Which app should be installed from the iOS App Store, and why is it needed for the SoE?",
@@ -258,7 +258,7 @@ const course = [
         doSteps: [
           "Open OneNote on the iPhone.",
           "Sign in with the work email account.",
-          "Open the case note draft notebook created on the desktop."
+          "Open the same Case Management notebook used on the desktop."
         ],
         checkQuestion:
           "How do you sign in to OneNote on iPhone so the desktop notebook is available?",
@@ -273,8 +273,8 @@ const course = [
           "Mobile sync confirms the SoE is available in the field. OneNote compares the phone with the cloud copy: it downloads sections and pages created on desktop, and it uploads phone edits so the desktop can receive them later.",
         doSteps: [
           "Find Case 1 and Case 2 in the OneNote iOS notebook.",
-          "Open the notebook list and allow OneNote to refresh from the cloud. If needed, close and reopen the notebook after a few minutes.",
-          "Add a small test draft to one section and confirm it later appears on the desktop."
+          "Allow OneNote to finish syncing from the cloud.",
+          "Add a small test draft and confirm it later appears on the desktop."
         ],
         checkQuestion:
           "Explain what phone sync does with the cloud and how you would confirm Case 1 and Case 2 arrived on the phone.",
@@ -296,8 +296,8 @@ const course = [
           "The iOS share sheet can be arranged so OneNote is easy to reach. Prioritizing OneNote reduces friction when capturing a draft note quickly.",
         doSteps: [
           "Run the Add case note shortcut and enter a fake note.",
-          "Open the share sheet, scroll to the end of the app row, and choose the more options control.",
-          "Edit the app list, add OneNote, and move it near the top so it is easy to select next time."
+          "Open the share sheet and add OneNote if it is not easy to find.",
+          "Move OneNote near the top so the next note is faster."
         ],
         checkQuestion:
           "How do you move OneNote near the top of the iOS share sheet for the Add case note shortcut?",
@@ -314,7 +314,7 @@ const course = [
           "Run the Add case note shortcut.",
           "Enter a brief practice note with a case label, date, and key detail.",
           "Select the proper case section in OneNote before saving the note.",
-          "Share the note to the correct OneNote case section and verify it appears there."
+          "Verify the note appears in that case section."
         ],
         checkQuestion:
           "Describe how you would use Add case note to capture a draft into the SoE.",
@@ -351,9 +351,9 @@ const course = [
         absorb:
           "The CDP is not complete until the draft becomes a final note in the SoR. A business-day expectation creates a clear deadline for review, cleanup, and entry.",
         doSteps: [
-          "Choose one draft note from the SoE.",
-          "Revise it into final case-note language with the required date, service, action, and outcome details.",
-          "Enter it into the SoR within the expected business-day window."
+          "Open the synced draft note on the desktop.",
+          "Clean it up into final case-note language.",
+          "Enter the final note into the SoR within the expected business-day window."
         ],
         checkQuestion:
           "What steps convert a SoE draft into a final SoR case note within a business day?"
@@ -365,9 +365,9 @@ const course = [
         absorb:
           "A draft is helpful but not official. Program requirements are satisfied only when the final note is entered into the designated SoR on time.",
         doSteps: [
-          "Write a two-sentence explanation of why an SoE draft is not the same as an SoR final note.",
-          "Identify one consequence of leaving a draft in the SoE past the required timeline.",
-          "Create a personal end-of-day check for moving drafts into the SoR."
+          "Check whether the note is still only in OneNote.",
+          "If it is, enter the final version into the SoR.",
+          "Use an end-of-day check so drafts do not get stranded."
         ],
         checkQuestion:
           "Why does a draft in the SoE not satisfy the requirement for final SoR documentation?"
@@ -381,7 +381,7 @@ const course = [
         doSteps: [
           "Confirm the final case note is saved in the SoR.",
           "Return to the matching draft in the SoE.",
-          "Delete or archive the draft according to local policy, then confirm the active case section is clear of completed drafts."
+          "Delete or archive the draft according to local policy so the case section stays uncluttered."
         ],
         checkQuestion:
           "After final SoR entry, what should happen to the matching SoE draft, and why?",
@@ -392,6 +392,8 @@ const course = [
 ];
 
 const modulesContainer = document.querySelector("#modules");
+const sidebar = document.querySelector(".sidebar");
+const sidebarToggle = document.querySelector("#sidebarToggle");
 const progressList = document.querySelector("#progressList");
 const progressLabel = document.querySelector("#progressLabel");
 const progressPercent = document.querySelector("#progressPercent");
@@ -415,6 +417,7 @@ const stateForm = document.querySelector("#stateForm");
 const stateClose = document.querySelector("#stateClose");
 const stateCancel = document.querySelector("#stateCancel");
 const progressNotesInput = document.querySelector("#progressNotes");
+const sidebarMediaQuery = window.matchMedia("(max-width: 980px)");
 
 let completed = loadProgress();
 let progressNotes = loadProgressNotes();
@@ -844,6 +847,20 @@ function updateCompletionMessage(isComplete) {
   completionMessage.hidden = !isComplete;
 }
 
+function setSidebarCollapsed(isCollapsed) {
+  sidebar.classList.toggle("is-collapsed", isCollapsed);
+  sidebarToggle.setAttribute("aria-expanded", String(!isCollapsed));
+  sidebarToggle.textContent = isCollapsed ? "Show progress" : "Hide progress";
+}
+
+function initializeSidebarCollapse() {
+  if (sidebarMediaQuery.matches) {
+    setSidebarCollapsed(true);
+  } else {
+    setSidebarCollapsed(false);
+  }
+}
+
 async function askOpenAI(form) {
   const context = getObjectiveById(form.dataset.loId);
   const apiKey = apiKeyInput.value.trim();
@@ -1255,6 +1272,17 @@ stateModal.addEventListener("click", (event) => {
   }
 });
 
+sidebarToggle.addEventListener("click", () => {
+  setSidebarCollapsed(!sidebar.classList.contains("is-collapsed"));
+});
+
+if (typeof sidebarMediaQuery.addEventListener === "function") {
+  sidebarMediaQuery.addEventListener("change", initializeSidebarCollapse);
+} else {
+  sidebarMediaQuery.addListener(initializeSidebarCollapse);
+}
+
+initializeSidebarCollapse();
 renderCourse();
 renderProgress();
 loadApiCredential();

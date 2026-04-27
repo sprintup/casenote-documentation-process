@@ -78,6 +78,25 @@ button {
   line-height: 1.15;
 }
 
+.sidebar-header {
+  display: flex;
+  gap: 14px;
+  align-items: start;
+  justify-content: space-between;
+}
+
+.sidebar-toggle {
+  display: none;
+  min-height: 36px;
+  padding: 7px 10px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: var(--radius);
+  background: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
 .eyebrow {
   margin: 0 0 8px;
   color: var(--accent);
@@ -277,6 +296,30 @@ button {
   color: var(--ink);
 }
 
+.api-setup {
+  grid-column: 1 / -1;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: #fbfcfb;
+}
+
+.api-setup summary {
+  padding: 10px 12px;
+  color: var(--accent-strong);
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.api-setup p {
+  margin: 0;
+  padding: 0 12px 12px;
+  color: var(--muted);
+}
+
+.api-setup a {
+  color: var(--accent-strong);
+}
+
 #apiNote {
   grid-column: 1 / -1;
   margin: -4px 0 0;
@@ -337,6 +380,19 @@ button {
 .completion-media-button {
   max-width: 360px;
   margin-top: 16px;
+}
+
+.site-footer {
+  margin-top: 28px;
+  padding: 20px 0 0;
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+
+.site-footer a {
+  color: var(--accent-strong);
+  font-weight: 700;
 }
 
 .module {
@@ -805,6 +861,15 @@ button {
   .sidebar {
     position: static;
     height: auto;
+  }
+
+  .sidebar-toggle {
+    display: inline-block;
+  }
+
+  .sidebar.is-collapsed .progress-card,
+  .sidebar.is-collapsed .progress-list {
+    display: none;
   }
 
   .progress-list {

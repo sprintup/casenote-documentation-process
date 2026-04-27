@@ -10,8 +10,11 @@
     <div class="app-shell">
       <aside class="sidebar" aria-label="Course progress">
         <div class="sidebar-header">
-          <p class="eyebrow">Short Course</p>
-          <h1>Case Note Documentation Process</h1>
+          <div>
+            <p class="eyebrow">Short Course</p>
+            <h1>Case Note Documentation Process</h1>
+          </div>
+          <button id="sidebarToggle" class="sidebar-toggle" type="button" aria-expanded="true">Hide progress</button>
         </div>
 
         <div class="progress-card">
@@ -46,22 +49,6 @@
       </aside>
 
       <main class="course">
-        <section class="api-panel" aria-labelledby="apiKeyTitle">
-          <div>
-            <p class="eyebrow">Connect</p>
-            <h2 id="apiKeyTitle">OpenAI API key</h2>
-          </div>
-          <form id="apiKeyForm" class="api-key-form">
-            <input class="visually-hidden" type="text" name="username" autocomplete="username" value="openai-api-key" aria-hidden="true" tabindex="-1">
-            <label class="api-key-field">
-              <span>API key</span>
-              <input id="apiKey" name="password" type="password" autocomplete="current-password" placeholder="sk-..." aria-describedby="apiNote apiStatus">
-            </label>
-          </form>
-          <p id="apiNote">Progress is saved locally, but the API key is not saved to localStorage. When supported, your browser may offer to store it in its password manager.</p>
-          <p id="apiStatus" class="api-status" aria-live="polite"></p>
-        </section>
-
         <section class="course-intro" aria-labelledby="courseTitle">
           <p class="eyebrow">One-page course</p>
           <h2 id="courseTitle">Build a dependable case note documentation process</h2>
@@ -85,6 +72,33 @@
           </p>
         </section>
 
+        <section class="api-panel" aria-labelledby="apiKeyTitle">
+          <div>
+            <p class="eyebrow">Connect</p>
+            <h2 id="apiKeyTitle">OpenAI API key</h2>
+          </div>
+          <form id="apiKeyForm" class="api-key-form">
+            <input class="visually-hidden" type="text" name="username" autocomplete="username" value="openai-api-key" aria-hidden="true" tabindex="-1">
+            <label class="api-key-field">
+              <span>API key</span>
+              <input id="apiKey" name="password" type="password" autocomplete="current-password" placeholder="sk-..." aria-describedby="apiNote apiStatus">
+            </label>
+          </form>
+          <details class="api-setup">
+            <summary>API key setup</summary>
+            <p>
+              Visit the <a href="https://platform.openai.com/settings/organization/billing/overview" target="_blank" rel="noopener noreferrer">Billing page</a>,
+              turn auto recharge off, and add a small credit to your account, such as $5.
+            </p>
+            <p>
+              Then create an API key on the <a href="https://platform.openai.com/settings/organization/api-keys" target="_blank" rel="noopener noreferrer">API keys page</a>.
+              Copy the secret key value and store it securely.
+            </p>
+          </details>
+          <p id="apiNote">Progress is saved locally, but the API key is not saved to localStorage. When supported, your browser may offer to store it in its password manager.</p>
+          <p id="apiStatus" class="api-status" aria-live="polite"></p>
+        </section>
+
         <section id="modules" class="modules" aria-label="Course modules"></section>
 
         <section id="completionMessage" class="completion-message" aria-labelledby="completionTitle" hidden>
@@ -103,6 +117,10 @@
             View image: Copy link to section
           </button>
         </section>
+
+        <footer class="site-footer">
+          <a href="https://github.com/sprintup/casenote-documentation-process" target="_blank" rel="noopener noreferrer">View source on GitHub</a>
+        </footer>
       </main>
     </div>
 
