@@ -36,7 +36,10 @@
               <strong id="timeTotal">121 min</strong>
             </div>
           </div>
-          <button id="resetState" class="reset-state-button" type="button">Reset state</button>
+          <div class="state-actions">
+            <button id="editState" class="state-button" type="button">Edit state</button>
+            <button id="resetState" class="state-button reset-state-button" type="button">Reset state</button>
+          </div>
         </div>
 
         <nav id="progressList" class="progress-list" aria-label="Learning objective checklist"></nav>
@@ -76,6 +79,10 @@
             objective, mark it as complete. The Do steps are recommended steps for completing the learning
             objective, not a separate submission.
           </p>
+          <p>
+            Use Edit state if you want to inspect or update what the coach remembers about your progress
+            across learning objectives.
+          </p>
         </section>
 
         <section id="modules" class="modules" aria-label="Course modules"></section>
@@ -108,6 +115,30 @@
         <img id="mediaImage" alt="">
         <p id="mediaCaption"></p>
       </div>
+    </dialog>
+
+    <dialog id="stateModal" class="state-modal" aria-labelledby="stateTitle">
+      <form id="stateForm" class="state-modal-inner" method="dialog">
+        <div class="media-modal-header">
+          <div>
+            <p class="eyebrow">Learner State</p>
+            <h2 id="stateTitle">Edit progress notes</h2>
+          </div>
+          <button id="stateClose" class="modal-close" type="button">Close</button>
+        </div>
+        <p class="state-help">
+          These notes are saved in this browser and sent to the Connect coach so you do not have to
+          repeat where you are. Connect responses are added here automatically; edit them anytime.
+        </p>
+        <label class="state-field">
+          <span>Progress notes</span>
+          <textarea id="progressNotes" rows="12" placeholder="Example: I installed OneNote on my phone, but I have not signed in yet."></textarea>
+        </label>
+        <div class="state-modal-actions">
+          <button class="ask-button" type="submit">Save state</button>
+          <button id="stateCancel" class="clear-button" type="button">Cancel</button>
+        </div>
+      </form>
     </dialog>
 
     <script src="script.js"></script>

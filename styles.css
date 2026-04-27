@@ -150,10 +150,16 @@ button {
   font-size: 0.9rem;
 }
 
-.reset-state-button {
+.state-actions {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+  margin-top: 14px;
+}
+
+.state-button {
   width: 100%;
   min-height: 38px;
-  margin-top: 14px;
   padding: 8px 10px;
   border: 1px solid rgba(255, 255, 255, 0.22);
   border-radius: var(--radius);
@@ -162,7 +168,7 @@ button {
   font-weight: 700;
 }
 
-.reset-state-button:hover {
+.state-button:hover {
   background: rgba(255, 255, 255, 0.16);
 }
 
@@ -690,7 +696,8 @@ button {
   color: #6b1d1d;
 }
 
-.media-modal {
+.media-modal,
+.state-modal {
   width: min(92vw, 900px);
   max-height: 90vh;
   padding: 0;
@@ -701,14 +708,20 @@ button {
   box-shadow: var(--shadow);
 }
 
-.media-modal::backdrop {
+.media-modal::backdrop,
+.state-modal::backdrop {
   background: rgba(9, 16, 12, 0.62);
 }
 
-.media-modal-inner {
+.media-modal-inner,
+.state-modal-inner {
   display: grid;
   gap: 14px;
   padding: 16px;
+}
+
+.state-modal {
+  width: min(92vw, 760px);
 }
 
 .media-modal-header {
@@ -721,6 +734,11 @@ button {
 .media-modal h2 {
   margin: 0;
   font-size: 1.1rem;
+}
+
+.state-modal h2 {
+  margin: 0;
+  font-size: 1.2rem;
 }
 
 .modal-close {
@@ -746,6 +764,37 @@ button {
 .media-modal p {
   margin: 0;
   color: var(--muted);
+}
+
+.state-help {
+  margin: 0;
+  color: var(--muted);
+}
+
+.state-field {
+  display: grid;
+  gap: 8px;
+}
+
+.state-field span {
+  color: var(--accent-strong);
+  font-weight: 700;
+}
+
+.state-field textarea {
+  width: 100%;
+  min-height: 240px;
+  resize: vertical;
+  padding: 12px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  color: var(--ink);
+}
+
+.state-modal-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
 }
 
 @media (max-width: 980px) {

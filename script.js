@@ -1,4 +1,5 @@
 const STORAGE_KEY = "case-note-short-course-progress";
+const NOTES_STORAGE_KEY = "case-note-short-course-notes";
 const CREDENTIAL_ID = "openai-api-key";
 const MODEL = "gpt-5-mini";
 const ULTIMATE_GOAL =
@@ -399,6 +400,7 @@ const timeCompleted = document.querySelector("#timeCompleted");
 const timeRemaining = document.querySelector("#timeRemaining");
 const timeTotal = document.querySelector("#timeTotal");
 const resetStateButton = document.querySelector("#resetState");
+const editStateButton = document.querySelector("#editState");
 const completionMessage = document.querySelector("#completionMessage");
 const apiKeyForm = document.querySelector("#apiKeyForm");
 const apiKeyInput = document.querySelector("#apiKey");
@@ -408,8 +410,14 @@ const mediaTitle = document.querySelector("#mediaTitle");
 const mediaImage = document.querySelector("#mediaImage");
 const mediaCaption = document.querySelector("#mediaCaption");
 const mediaClose = document.querySelector("#mediaClose");
+const stateModal = document.querySelector("#stateModal");
+const stateForm = document.querySelector("#stateForm");
+const stateClose = document.querySelector("#stateClose");
+const stateCancel = document.querySelector("#stateCancel");
+const progressNotesInput = document.querySelector("#progressNotes");
 
 let completed = loadProgress();
+let progressNotes = loadProgressNotes();
 
 function totalObjectives() {
   return course.reduce((sum, module) => sum + module.objectives.length, 0);
@@ -495,20 +503,54 @@ function loadProgress() {
   }
 }
 
+function loadProgressNotes() {
+  return localStorage.getItem(NOTES_STORAGE_KEY) || "";
+}
+
 function saveProgress() {
   localStorage.setItem(STORAGE_KEY, JSON.stringify(completed));
 }
 
+function saveProgressNotes() {
+  localStorage.setItem(NOTES_STORAGE_KEY, progressNotes);
+}
+
 function resetState() {
-  const shouldReset = window.confirm("Reset all saved course progress?");
+  const shouldReset = window.confirm("Reset saved course progress and progress notes? This will not remove the API key from the field or password manager.");
   if (!shouldReset) {
     return;
   }
 
   completed = {};
+  progressNotes = "";
   localStorage.removeItem(STORAGE_KEY);
+  localStorage.removeItem(NOTES_STORAGE_KEY);
   renderCourse();
   renderProgress();
+}
+
+function openStateModal() {
+  progressNotesInput.value = progressNotes;
+
+  if (typeof stateModal.showModal === "function") {
+    stateModal.showModal();
+  } else {
+    stateModal.setAttribute("open", "");
+  }
+}
+
+function closeStateModal() {
+  if (typeof stateModal.close === "function") {
+    stateModal.close();
+  } else {
+    stateModal.removeAttribute("open");
+  }
+}
+
+function saveStateFromModal() {
+  progressNotes = progressNotesInput.value.trim();
+  saveProgressNotes();
+  closeStateModal();
 }
 
 function renderCourse() {
@@ -853,6 +895,7 @@ async function askOpenAI(form) {
     }
 
     setAnswer(answer, extractOutputText(data) || "I did not receive a text answer. Try rephrasing your question.");
+    appendProgressNote(context, question);
     rememberApiKeyInBrowser();
   } catch (error) {
     setAnswer(answer, error.message || "The request could not be completed.", "error");
@@ -865,6 +908,9 @@ async function askOpenAI(form) {
 function buildPrompt(context, question) {
   const links = (context.objective.links || []).map((link) => `${link.title}: ${link.url}`).join("\n");
   const mediaContext = (context.objective.media || []).map((item) => `${item.title}: ${item.caption}`).join("\n");
+  const completedRefs = getCompletedRefs();
+  const priorContext = getPriorObjectiveContext(context.moduleIndex, context.objectiveIndex);
+  const courseMap = getCourseMap(context);
 
   return [
     "You are a supportive course coach for a case manager learning case note documentation.",
@@ -876,6 +922,9 @@ function buildPrompt(context, question) {
     ULTIMATE_GOAL,
     "It is not critical that the learner understand every detail of every learning objective. Prioritize practical progress toward the ultimate goal.",
     "If the learner is close enough to keep moving safely, encourage them and tell them the next concrete action.",
+    "Each learning objective builds on the previous ones. Use the course map, completed objectives, and progress notes to understand where the learner probably is.",
+    "The learner may skip steps. If their difficulty is likely caused by a skipped earlier step, briefly summarize the solution to the immediate problem and point them to the most relevant LO reference for more help.",
+    "Do not make the learner repeat details already present in progress notes. Build from those notes unless the notes are unclear.",
     "Treat the learner's message as either an answer to the verification question or a request for coaching.",
     "If the learner's answer sufficiently demonstrates the learning objective, say that it meets the objective and explicitly tell them they may mark the LO complete.",
     "If the answer is incomplete or incorrect, do not tell them to mark it complete. Reassure them, name one thing they already have right, explain what is missing, coach them through the next step, and ask one focused follow-up question.",
@@ -892,9 +941,81 @@ function buildPrompt(context, question) {
     `Recommended Do steps: ${context.objective.doSteps.join(" ")}`,
     links ? `Helpful documentation links:\n${links}` : "Helpful documentation links: none listed",
     mediaContext ? `Available image context:\n${mediaContext}` : "Available image context: none listed",
+    `Completed LO references: ${completedRefs || "none marked complete"}`,
+    `Learner progress notes:\n${progressNotes || "No progress notes yet."}`,
+    `Previous LO context:\n${priorContext || "This is the first LO."}`,
+    `Course map for referring skipped-step problems:\n${courseMap}`,
     "",
     `Learner response: ${question}`
   ].join("\n");
+}
+
+function getCompletedRefs() {
+  return course
+    .flatMap((module, moduleIndex) => {
+      return module.objectives
+        .map((_, objectiveIndex) => {
+          return completed[objectiveId(moduleIndex, objectiveIndex)] ? objectiveRef(moduleIndex, objectiveIndex) : "";
+        })
+        .filter(Boolean);
+    })
+    .join(", ");
+}
+
+function getPriorObjectiveContext(moduleIndex, objectiveIndex) {
+  const currentFlatIndex = getFlatObjectiveIndex(moduleIndex, objectiveIndex);
+  return course
+    .flatMap((module, currentModuleIndex) => {
+      return module.objectives.map((objective, currentObjectiveIndex) => {
+        return {
+          flatIndex: getFlatObjectiveIndex(currentModuleIndex, currentObjectiveIndex),
+          ref: objectiveRef(currentModuleIndex, currentObjectiveIndex),
+          objective
+        };
+      });
+    })
+    .filter((item) => item.flatIndex < currentFlatIndex)
+    .slice(-5)
+    .map((item) => `${item.ref}: ${item.objective.checkQuestion}`)
+    .join("\n");
+}
+
+function getCourseMap(context) {
+  return course
+    .flatMap((module, moduleIndex) => {
+      return module.objectives.map((objective, objectiveIndex) => {
+        const id = objectiveId(moduleIndex, objectiveIndex);
+        const status = completed[id] ? "complete" : "not marked complete";
+        const current = moduleIndex === context.moduleIndex && objectiveIndex === context.objectiveIndex ? "current" : "";
+        return `${objectiveRef(moduleIndex, objectiveIndex)}${current ? " (current)" : ""} - ${status} - ${objective.checkQuestion}`;
+      });
+    })
+    .join("\n");
+}
+
+function getFlatObjectiveIndex(moduleIndex, objectiveIndex) {
+  let flatIndex = 0;
+
+  for (let index = 0; index < moduleIndex; index += 1) {
+    flatIndex += course[index].objectives.length;
+  }
+
+  return flatIndex + objectiveIndex;
+}
+
+function appendProgressNote(context, text) {
+  const cleanText = text.replace(/\s+/g, " ").trim();
+  if (!cleanText) {
+    return;
+  }
+
+  const entry = `${context.ref}: ${cleanText}`;
+  if (progressNotes.includes(entry)) {
+    return;
+  }
+
+  progressNotes = [progressNotes, entry].filter(Boolean).join("\n");
+  saveProgressNotes();
 }
 
 function extractOutputText(data) {
@@ -1109,11 +1230,28 @@ apiKeyInput.addEventListener("change", () => {
 
 mediaClose.addEventListener("click", closeMediaModal);
 
+editStateButton.addEventListener("click", openStateModal);
+
 resetStateButton.addEventListener("click", resetState);
 
 mediaModal.addEventListener("click", (event) => {
   if (event.target === mediaModal) {
     closeMediaModal();
+  }
+});
+
+stateForm.addEventListener("submit", (event) => {
+  event.preventDefault();
+  saveStateFromModal();
+});
+
+stateClose.addEventListener("click", closeStateModal);
+
+stateCancel.addEventListener("click", closeStateModal);
+
+stateModal.addEventListener("click", (event) => {
+  if (event.target === stateModal) {
+    closeStateModal();
   }
 });
 
