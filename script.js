@@ -457,7 +457,7 @@ function objectiveId(moduleIndex, objectiveIndex) {
 }
 
 function objectiveRef(moduleIndex, objectiveIndex) {
-  return `M${String(moduleIndex + 1).padStart(2, "0")}-LO${String(objectiveIndex + 1).padStart(2, "0")}`;
+  return `M${moduleIndex + 1}-LO${objectiveIndex + 1}`;
 }
 
 function getObjectiveById(id) {
