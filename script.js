@@ -3,7 +3,7 @@ const NOTES_STORAGE_KEY = "case-note-short-course-notes";
 const CREDENTIAL_ID = "openai-api-key";
 const MODEL = "gpt-5-mini";
 const ULTIMATE_GOAL =
-  "The ultimate goal is for the learner to save a note using the Add case note iOS shortcut, send it to the proper OneNote case section, sync it through the cloud, and access it on the desktop.";
+  "The ultimate goal is for the learner to save a note using the \"Add case note\" iOS shortcut, send it to the proper OneNote case section, sync it through the cloud, and access it on the desktop.";
 const COACHING_EMPTY_MESSAGE =
   "Your coaching response will appear here. Your coach will tell you when to mark this learning objective as complete";
 
@@ -291,49 +291,49 @@ const course = [
       {
         time: 10,
         objective:
-          "Case manager with the Add case note shortcut will be able to prioritize OneNote to the top of the list of apps to share the case note with by pressing the Add case note shortcut, entering a fake case note, scrolling all the way to the right of the application list, clicking the triple dots, pressing edit, finding OneNote and pressing the green plus icon and then moving it to the top of the list.",
+          "Case manager with the \"Add case note\" shortcut will be able to prioritize OneNote to the top of the list of apps to share the case note with by pressing the \"Add case note\" shortcut, entering a fake case note, scrolling all the way to the right of the application list, clicking the triple dots, pressing edit, finding OneNote and pressing the green plus icon and then moving it to the top of the list.",
         absorb:
           "The iOS share sheet can be arranged so OneNote is easy to reach. Prioritizing OneNote reduces friction when capturing a draft note quickly.",
         doSteps: [
-          "Run the Add case note shortcut and enter a fake note.",
+          "Run the \"Add case note\" shortcut and enter a fake note.",
           "Open the share sheet and add OneNote if it is not easy to find.",
           "Move OneNote near the top so the next note is faster."
         ],
         checkQuestion:
-          "How do you move OneNote near the top of the iOS share sheet for the Add case note shortcut?",
+          "How do you move OneNote near the top of the iOS share sheet for the \"Add case note\" shortcut?",
         links: [docs.shareToOneNote],
         media: [media.appsOnIos]
       },
       {
         time: 6,
         objective:
-          "Case manager with Add case note shortcut will be able to record a case note into the SoE.",
+          "Case manager with \"Add case note\" shortcut will be able to record a case note into the SoE.",
         absorb:
           "The shortcut is the fast capture entry point. A quick note shared into OneNote becomes a draft in the SoE until it is reviewed and finalized in the SoR.",
         doSteps: [
-          "Run the Add case note shortcut.",
+          "Run the \"Add case note\" shortcut.",
           "Enter a brief practice note with a case label, date, and key detail.",
           "Select the proper case section in OneNote before saving the note.",
           "Verify the note appears in that case section."
         ],
         checkQuestion:
-          "Describe how you would use Add case note to capture a draft into the SoE.",
+          "Describe how you would use \"Add case note\" to capture a draft into the SoE.",
         links: [docs.shareToOneNote]
       },
       {
         time: 10,
         objective:
-          "Case manager with OneNote application on their iPhone will be able to add a iOS shortcut called Add case note using the iOS Shortcut app by sliding down and searching for shortcuts, adding new, the first item should be Ask for Input and the second step should be Share.",
+          "Case manager with OneNote application on their iPhone will be able to add a iOS shortcut called \"Add case note\" using the iOS Shortcut app by sliding down and searching for shortcuts, adding new, the first item should be Ask for Input and the second step should be Share.",
         absorb:
           "A simple shortcut can collect text and immediately open the share sheet. The two-step pattern is Ask for Input followed by Share.",
         doSteps: [
           "Open the Shortcuts app from iOS search.",
-          "Create a new shortcut named Add case note.",
+          "Create a new shortcut named \"Add case note\".",
           "Add Ask for Input as the first action and Share as the second action.",
           "Test it by entering a practice note, choosing OneNote, and selecting the proper case section before saving."
         ],
         checkQuestion:
-          "What two actions make up the Add case note shortcut, and how do you choose the proper case when testing it?",
+          "What two actions make up the \"Add case note\" shortcut, and how do you choose the proper case when testing it?",
         links: [docs.oneNoteAppStore, docs.askForInput],
         media: [media.appsOnIos]
       }
